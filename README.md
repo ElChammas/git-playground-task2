@@ -1,6 +1,6 @@
-# Unit 4 Git playground - Lesson 2
+# Unit 4 Git playground — Lesson 4
 
-A tiny command-line notes tool, used as the practice repo for Unit 4, Lesson 2 (committing well). The app is a safe sandbox, the task is to make one small change and have Claude commit it with a clear message.
+A tiny command-line notes tool, used as the practice repo for Unit 4, Lesson 4 (reviewing code). This repo has a branch called `review-me` with a small change on it — and a bug planted in that change on purpose. Your job is to have Claude review it and see whether it catches the bug.
 
 ### The app
 - `node notes.js add <text>` — add a note
@@ -8,19 +8,19 @@ A tiny command-line notes tool, used as the practice repo for Unit 4, Lesson 2 (
 - `node notes.js search <term>` — list notes containing a term
 - `node notes.js delete <id>` — delete a note
 
-Layout: `notes.js` is the entry point, `lib/store.js` loads, saves, and searches notes (in `notes.json`), and `lib/config.js` holds app settings.
+Layout: `notes.js` is the entry point, `lib/store.js` loads, saves, and searches notes, `lib/config.js` holds settings, and `tests/` holds the test suite (`npm test`).
 
 ### Set up
 1. Make sure you have your own copy of this repo (created from the lesson on the platform).
-2. Clone it locally and open Claude Code in the folder.
+2. Clone it locally, and run `gh auth login` so Claude can open pull requests through the `gh` CLI.
+3. Open Claude Code in the folder.
 
-### Lesson 2 task — let Claude write the commit message
-**Heads-up: the tests start red on purpose.** The repo ships with one bug, your job is to fix it, then let Claude commit the fix with a clear message.
+### Lesson 4 task — review a pull request
+Goal: open the `review-me` pull request, have Claude review it, and judge whether it caught the planted bug.
 
-1. **Run the tests:** `npm test`. Two of the `search` tests fail — that's expected, not a broken repo.
-2. **Find the bug.** The `search` command should list every note that *contains* your term, but right now it only matches a note whose text is *exactly* the term. The fix is one line, in the `matches` function in `lib/store.js`.
-3. **Fix that line, then run `npm test` again.** All three tests should now pass. A good commit doesn't leave the build broken.
-4. **Write your own message first.** In `notes.md` (or a scratch note), jot the quick commit message you'd dash off yourself. You'll compare it to Claude's.
-5. **Let Claude commit it.** Ask: *'Run the tests to confirm they pass, then stage my changes and commit them on a new branch with a corresponding message.'*
-6. **Compare.** Open the commit on GitHub and read Claude's message. Does it explain the change — the *why*, not just the *what* — better than your quick version?
-7. Open the PR against the main repository, not your fork, and submit.
+1. **Check the branch is there.** Run `git branch -a` — you should see `review-me`. It came with your copy.
+2. **Open the PR.** Ask Claude: *"Open a pull request for the `review-me` branch."*
+3. **Have Claude review it.** Ask: *"Review this PR — look for bugs, edge cases, and anything risky."*
+4. **Judge the review.** One bug was planted on purpose. Did Claude catch it? Note what it flagged and whether it found the real problem.
+5. **Comment.** Add a one-line comment on the PR saying whether Claude caught the bug.
+6. **Submit** the pull request link.
