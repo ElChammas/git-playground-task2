@@ -1,6 +1,6 @@
 name: CI
 
-# Runs on pull requests — it checks the learner's fix, not the untouched starter.
+# Runs on pull requests — it checks the change on the branch.
 on:
   pull_request:
 
